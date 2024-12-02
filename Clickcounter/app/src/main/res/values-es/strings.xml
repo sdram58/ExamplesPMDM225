@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Contador de clics</string>
+    <string name="counter_text">Has hecho clic %1$s veces</string>
+    <string name="clickme">¡PÚLSAME!</string>
+    <string name="reset">Reinicia el contador</string>
+</resources>
