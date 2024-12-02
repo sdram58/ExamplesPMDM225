@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Numerical Converter</string>
+    <string name="convert_binary">Convert to binary</string>
+    <string name="convert_to_hexadecimal">Convert to hexadecimal</string>
+    <string name="btn_delete">Delete</string>
+    <string name="btn_start">Click to generate a number</string>
+</resources>
