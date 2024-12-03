@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,14 +36,13 @@ import com.catata.numericalconverter.ui.theme.NumericalConverterTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //enableEdgeToEdge()
         setContent {
             NumericalConverterTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Content()
+                Scaffold (
+                    modifier = Modifier.fillMaxSize()
+                ) { innerPadding ->
+                    Content(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -49,13 +50,13 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Content() {
+fun Content(modifier: Modifier) {
     var decimalNumber by rememberSaveable { mutableStateOf("") }
     var binaryResult by rememberSaveable { mutableStateOf("") }
     var hexadecimalResult by rememberSaveable { mutableStateOf("") }
 
-    val ColorBtnHexadecimal = Color(0xFF7B8108)
-    val ColorBtnBinary = Color(0xFF1F8491)
+    val colorBtnHexadecimal = Color(0xFF7B8108)
+    val colorBtnBinary = Color(0xFF1F8491)
 
 //    Integer.toBinaryString(3)
 
@@ -125,7 +126,7 @@ fun Content() {
                     binaryResult = "b${Integer.toBinaryString(decimalNumber.toInt())}"
                 },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = ColorBtnBinary,
+                    containerColor = colorBtnBinary,
                     contentColor = Color.White
                 ),
                 enabled = decimalNumber.length!=0
@@ -136,7 +137,7 @@ fun Content() {
             Text(
                 text = binaryResult,
                 fontSize = 20.sp,
-                color = ColorBtnBinary
+                color = colorBtnBinary
             )
         }
         Spacer(modifier = Modifier.height(30.dp))
@@ -153,7 +154,7 @@ fun Content() {
                     hexadecimalResult = "0x${Integer.toHexString(decimalNumber.toInt()).uppercase()}"
                 },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = ColorBtnHexadecimal,
+                    containerColor = colorBtnHexadecimal,
                     contentColor = Color.White
                 ),
                 enabled = decimalNumber.isNotEmpty()
@@ -164,7 +165,7 @@ fun Content() {
             Text(
                 text = hexadecimalResult,
                 fontSize = 20.sp,
-                color = ColorBtnHexadecimal
+                color = colorBtnHexadecimal
             )
         }
     }
@@ -184,11 +185,10 @@ fun Content() {
 @Composable
 fun ContentPreview() {
     NumericalConverterTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            Content()
+        Scaffold (
+            modifier = Modifier.fillMaxSize()
+        ) { innerPadding ->
+            Content(modifier = Modifier.padding(innerPadding))
         }
     }
 }
