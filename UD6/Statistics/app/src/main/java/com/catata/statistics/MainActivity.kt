@@ -4,16 +4,19 @@ import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,14 +35,13 @@ import com.catata.statistics.ui.theme.StatisticsTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //enableEdgeToEdge()
         setContent {
             StatisticsTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Content()
+                Scaffold (
+                    modifier = Modifier.fillMaxSize()
+                ) { innerPadding ->
+                    Content(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -47,7 +49,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Content() {
+fun Content(modifier: Modifier) {
     var total by rememberSaveable { mutableStateOf(0) }
     var people by rememberSaveable { mutableStateOf(0) }
     var scooters by rememberSaveable { mutableStateOf(0) }
@@ -65,7 +67,7 @@ fun Content() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Estadísticas UD3",
+            text = "Statistics U6",
             fontSize = 40.sp
         )
         Spacer(modifier = Modifier.height(20.dp))
@@ -91,12 +93,12 @@ fun Content() {
                     containerColor = redColor
                 )
             ) {
-                Text("Reiniciar todos")
+                Text("Reset All")
             }
         }
         Spacer(modifier = Modifier.height(20.dp))
 
-        Text("Personas:")
+        Text("People:")
         Spacer(modifier = Modifier.height(5.dp))
         Row(
             verticalAlignment = Alignment.CenterVertically
@@ -146,7 +148,7 @@ fun Content() {
         }
         Spacer(modifier = Modifier.height(20.dp))
 
-        Text("Patinetes:")
+        Text("Scooters:")
         Spacer(modifier = Modifier.height(5.dp))
         Row(
             verticalAlignment = Alignment.CenterVertically
@@ -196,7 +198,7 @@ fun Content() {
         }
         Spacer(modifier = Modifier.height(20.dp))
 
-        Text("Bicicletas:")
+        Text("Bicycles:")
         Spacer(modifier = Modifier.height(5.dp))
         Row(
             verticalAlignment = Alignment.CenterVertically
@@ -246,7 +248,7 @@ fun Content() {
         }
         Spacer(modifier = Modifier.height(20.dp))
 
-        Text("Coches:")
+        Text("Cars:")
         Spacer(modifier = Modifier.height(5.dp))
         Row(
             verticalAlignment = Alignment.CenterVertically
@@ -297,13 +299,13 @@ fun Content() {
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        Text(text = "Estadísticas")
+        Text(text = "Statistics")
         Text(
             text = """
-            |Personas: ${if (total == 0) 0 else people * 100 / total} %
-            |Patinetes: ${if (total == 0) 0 else scooters * 100 / total} %
-            |Bicicletas: ${if (total == 0) 0 else bikes * 100 / total} %
-            |Coches: ${if (total == 0) 0 else cars * 100 / total} %            
+            |Peoples: ${if (total == 0) 0 else people * 100 / total} %
+            |Scooters: ${if (total == 0) 0 else scooters * 100 / total} %
+            |Bicycles: ${if (total == 0) 0 else bikes * 100 / total} %
+            |Cars: ${if (total == 0) 0 else cars * 100 / total} %            
             """.trimMargin()
         )
     }
@@ -323,11 +325,10 @@ fun Content() {
 @Composable
 fun ContentPreview() {
     StatisticsTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            Content()
+        Scaffold (
+            modifier = Modifier.fillMaxSize()
+        ) { innerPadding ->
+            Content(modifier = Modifier.padding(innerPadding))
         }
     }
 }
