@@ -11,7 +11,7 @@ import com.catata.signup.ui.screens.signup.SignUp
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //enableEdgeToEdge()
+        /*enableEdgeToEdge()*/
         setContent {
             SignUpContent {
                 SignUp(it)
