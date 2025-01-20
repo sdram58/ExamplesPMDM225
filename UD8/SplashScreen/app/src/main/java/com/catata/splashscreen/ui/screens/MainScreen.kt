@@ -21,7 +21,8 @@ fun MainScreen (navController: NavController){
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
+
         ) {
             Text("Main Screen")
         }

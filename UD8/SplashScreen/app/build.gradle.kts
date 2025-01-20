@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.catata.splashscreen"
-        minSdk = 26
+        minSdk = 31
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -55,7 +55,8 @@ dependencies {
     implementation(libs.androidx.navigation)
     implementation(libs.kotlinx.serialization.json)
 
-    implementation(libs.androidx.core.splashscreen)
+    //In newer versions we don't need to add dependency
+    //implementation(libs.androidx.core.splashscreen)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
