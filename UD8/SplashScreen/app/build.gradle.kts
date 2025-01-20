@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.catata.navigationtests"
+    namespace = "com.catata.splashscreen"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.catata.navigationtests"
+        applicationId = "com.catata.splashscreen"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
@@ -55,7 +55,7 @@ dependencies {
     implementation(libs.androidx.navigation)
     implementation(libs.kotlinx.serialization.json)
 
-    implementation(libs.androidx.adaptive.android)
+    implementation(libs.androidx.core.splashscreen)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
