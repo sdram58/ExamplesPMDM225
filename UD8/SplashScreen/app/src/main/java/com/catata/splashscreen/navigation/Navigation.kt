@@ -12,12 +12,12 @@ fun Navigation() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = Splash
+        startDestination = Routes.Splash
     ) {
-        composable<Splash> {
+        composable<Routes.Splash> {
             SplashScreen(navController)
         }
-        composable<Main> {
+        composable<Routes.Main> {
             MainScreen(navController)
         }
     }
