@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import com.catata.navigationtests.navigation.First
+import com.catata.navigationtests.navigation.Routes
 import com.catata.navigationtests.ui.screens.layout.AppScaffold
 
 
@@ -38,8 +38,8 @@ fun SecondScreen(navController: NavController, name: String, age: Int = 0) {
 
                 // Goes to the indicated one (if it is the previous one it will be a new instance: empty fields)
                 // Also, cleans the stack
-                navController.navigate(First) {
-                    popUpTo<First> {
+                navController.navigate(Routes.First) {
+                    popUpTo<Routes.First> {
                         inclusive = true
                     }
                 }

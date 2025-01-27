@@ -16,18 +16,18 @@ fun Navigation() {
     // Element that knows the different screens and which is the first to launch
     NavHost(
         navController = navController,
-        startDestination = First // Route where the application starts
+        startDestination = Routes.First // Route where the application starts
     ) {
 
         // Definition of the first screen
-        composable<First> {
+        composable<Routes.First> {
             FirstScreen(navController)
         }
 
         // Definition of the second screen
-        composable<Second> {
+        composable<Routes.Second> {
             // Parameters are obtained from the route to use them when loading the screen
-            val args = it.toRoute<Second>()
+            val args = it.toRoute<Routes.Second>()
             SecondScreen(navController, args.name, args.age)
         }
 

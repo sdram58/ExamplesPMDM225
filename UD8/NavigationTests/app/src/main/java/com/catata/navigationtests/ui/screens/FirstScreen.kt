@@ -19,7 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.catata.navigationtests.navigation.Second
+import com.catata.navigationtests.navigation.Routes
 import com.catata.navigationtests.ui.screens.layout.AppScaffold
 
 
@@ -53,7 +53,7 @@ fun FirstScreen(navController: NavController) {
             Button(
                 onClick = {
                     navController.navigate(
-                        Second(
+                        Routes.Second(
                             name = nameState,
                             age = ageState.toIntOrNull() ?: 0
                         )

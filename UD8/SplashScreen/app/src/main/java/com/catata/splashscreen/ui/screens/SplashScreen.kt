@@ -19,7 +19,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -27,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.catata.splashscreen.R
-import com.catata.splashscreen.navigation.Main
+import com.catata.splashscreen.navigation.Routes
 import kotlinx.coroutines.delay
 
 @Composable
@@ -35,7 +34,7 @@ fun SplashScreen(navController: NavHostController) {
     LaunchedEffect(key1 = true) {
         delay(5000)
         navController.popBackStack() // Evitar volver a la Splash Screen
-        navController.navigate(Main)
+        navController.navigate(Routes.Main)
     }
 
     Splash()
