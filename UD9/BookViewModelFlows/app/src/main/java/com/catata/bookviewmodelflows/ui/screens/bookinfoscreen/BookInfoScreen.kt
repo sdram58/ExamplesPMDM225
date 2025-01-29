@@ -46,7 +46,7 @@ fun BookInfoScreen(
         // Suscripción al libro seleccionado del ViewModel
         val book: Book by bookViewModel.selectedBook.collectAsState()
 
-        var favorite by rememberSaveable { mutableStateOf(book.favorite) }
+        //var favorite by rememberSaveable { mutableStateOf(book.favorite) }
 
         Column(
             modifier = Modifier
@@ -64,7 +64,7 @@ fun BookInfoScreen(
                         imageVector = Icons.AutoMirrored.Filled.MenuBook,
                         contentDescription = "book"
                     )
-                    if (favorite) {
+                    if (book.favorite) {
                         Spacer(modifier = Modifier.height(4.dp))
                         Icon(
                             imageVector = Icons.Default.Star,
@@ -88,10 +88,9 @@ fun BookInfoScreen(
             )
 
             TextButton(onClick = {
-//                bookViewModel.markAsFavorite(book)
-                favorite = !favorite
+                bookViewModel.markAsFavorite()
             }) {
-                Text(text = if (favorite) "Quitar favorito" else "Marcar favorito")
+                Text(text = if (book.favorite) "Quitar favorito" else "Marcar favorito")
             }
 
             Row(

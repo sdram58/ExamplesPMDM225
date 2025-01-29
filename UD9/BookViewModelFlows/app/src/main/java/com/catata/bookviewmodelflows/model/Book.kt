@@ -7,6 +7,7 @@ data class Book(
     var visible: Boolean = true,
 ) {
     companion object{
+        var index:Int = 0;
         fun getData() : List<Book> {
             return listOf(
                 Book("Ready Player One", "Ernest Cline"),

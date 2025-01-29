@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class BookViewModel : ViewModel() {
@@ -51,15 +52,29 @@ class BookViewModel : ViewModel() {
     }
 
     // Para marcar/desmarcar el libro como favorito
-    fun markAsFavorite(book: Book) {
-        _books.value?.map {
-            if (it == book) it.favorite = !it.favorite
+    fun markAsFavorite() {
+
+
+        //Actualizamos con una nueva lista, para que cambia el valor del contenido
+        // del stateFlow, recuerda que el contenido es una referencia a una lista
+        _books.update { books -> //Actualizamos la lista para que se recomponga MainScreen
+            books.map { book ->
+                if (book == _selectedBook.value){
+                    val favorite = !book.favorite
+                    val b = book.copy(favorite = favorite)
+                    _selectedBook.update {//Actualizamos el actual para que se recomponga BookInfoScreen
+                        b
+                    }
+                    b
+                } // Nueva instancia de Book
+                else book
+            }
         }
     }
 
     fun searchBook(searchString: String) {
         val searchList = mutableListOf<Book>()
-        _books.value?.forEach {
+        _books.value.forEach {
 //            val book = it.copy()
 //            book.visible = book.title.contains(searchString, true)
 //            searchList.add(book)
